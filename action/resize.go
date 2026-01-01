@@ -55,19 +55,18 @@ func BulkResizeImage(args []string) error {
 		wg.Add(1) // +1
 
 		// 並行処理
-		go func(f string) {
+		go func(f string) { // 並行処理(Goroutine)として実行
 			defer wg.Done() // -1
 
-			limit <- struct{}{}
-			defer func() { <- limit }()
+			limit <- struct{}{} // limitに空の構造体を入れている
+			defer func() { <- limit }() // 1つの処理が終わるタイミングでlimitから1つ空きを作る
 
 			dummyArgs := []string{"dummy", f, widthStr}
 			if err := ResizeImage(dummyArgs); err != nil {
 				fmt.Printf("[error]%s: %v\n", f, err) // 並行処理中のエラーは画面に表示するだけ
 			}
-		}(file)
+		}(file) // 今の瞬間のfileの値をコピーしてfという新しい名前でこの関数に渡している
 	}
-
 	wg.Wait()
 
 	fmt.Println("画像リサイズ処理が完了しました")
