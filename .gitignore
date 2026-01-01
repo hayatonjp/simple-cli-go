@@ -1,0 +1,46 @@
+# --- Goのビルド成果物 ---
+# Windows用のバイナリ
+*.exe
+*.exe~
+*.dll
+
+# Mac/Linux用のバイナリ（拡張子がないため、フォルダに入れるか個別に指定）
+# 一般的にビルド先にするフォルダ
+bin/
+dist/
+
+# --- あなたのプロジェクト固有のもの ---
+# 実行ファイル名（go buildで生成されるもの）
+simple-cli
+main
+
+# リサイズ画像の出力先
+output/
+input/
+
+# --- テスト・カバレッジ ---
+# テストのプロファイル結果
+*.out
+*.prof
+# テスト用バイナリ
+*.test
+
+# --- 依存関係 (Go Modules) ---
+# 基本はGit管理外にして、go.mod/go.sumで管理
+vendor/
+
+# --- 環境設定・秘密情報 ---
+# APIキーなどを入れたファイルは絶対にコミットしない
+.env
+.env.local
+
+# --- OS・エディタの自動生成ファイル ---
+# Mac
+.DS_Store
+# Windows
+Thumbs.db
+# VSCode
+.vscode/
+# GoLand / IntelliJ
+.idea/
+*.iml
