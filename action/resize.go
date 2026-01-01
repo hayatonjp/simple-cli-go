@@ -19,7 +19,7 @@ const OutputDir = "output" // 出力先フォルダ名
 
 func BulkResizeImage(args []string) error {
 	if len(args) < 2 {
-		return fmt.Errorf("使い方: resize <幅> <ファイル1> <ファイル2> ...")
+		return fmt.Errorf("使い方: bulkResize -w <幅> <ファイル1> <ファイル2> ...")
 	}
 	fs := flag.NewFlagSet(args[1], flag.ExitOnError)
 	widthPtr := fs.Int("w", 0, "リサイズ後の幅(px)") // -wという名前でデフォルト値, 説明文
